@@ -16,14 +16,14 @@ public class Main {
 
     private static void tempPlayerList() {
         allPlayerList.add(new memberPlayer("Jesper", "Nielsen", 32, 1));
-        allPlayerList.add(new memberPlayer("Biggus","Dickus",50,1));
-        allPlayerList.add(new memberPlayer("John","Dillermand",45,1));
+        allPlayerList.add(new memberPlayer("Biggus","Dickus",34,1));
+        allPlayerList.add(new memberPlayer("John","Dillermand",34,1));
         allPlayerList.add(new memberPlayer("Thor","Andersen",22,1));
-        allPlayerList.add(new memberPlayer("Hans", "Clausen", 99, 1));
+        allPlayerList.add(new memberPlayer("Hans", "Clausen", 34, 1));
         allPlayerList.add(new memberPlayer("Henning", "Dillermand", 25, 2));
         allPlayerList.add(new memberPlayer("Jens", "Mogensen", 22, 2));
         allPlayerList.add(new memberPlayer("Ice", "Wallowcome", 17, 2));
-        allPlayerList.add(new memberPlayer("Roberto", "Carlos", 42, 1));
+        allPlayerList.add(new memberPlayer("Roberto", "Carlos", 34, 1));
 
         //team.add(new memberPlayer();
     }
@@ -99,13 +99,16 @@ public class Main {
             byFirstNameList.add(fnPlayer);
         }
         Collections.sort(byFirstNameList);
-      //  printList(byFirstNameList);
+        printList(byFirstNameList);
     }
-/*
-    private static void printList(List<memberPlayer> byFirstNameList) {
 
+    private static void printList(List<memberPlayer> listInput) {
+        for(memberPlayer player:listInput){
+            System.out.println(player);
+        }
+        System.out.println();
 
-    } */
+    }
 
     private static void showPrintMenuText() {
         System.out.println("Choose which list you want to print: ");
