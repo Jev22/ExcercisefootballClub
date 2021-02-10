@@ -15,9 +15,9 @@ public class Main {
     }
 
     private static void tempPlayerList() {
-        allPlayerList.add(new memberPlayer("Jesper", "Nielsen", 32, 1));
-        allPlayerList.add(new memberPlayer("Biggus","Dickus",34,1));
-        allPlayerList.add(new memberPlayer("John","Dillermand",34,1));
+        allPlayerList.add(new memberPlayer( "Jesper", "Nielsen", 32, 1));
+        allPlayerList.add(new memberPlayer( "Biggus","Dickus",34,1));
+        allPlayerList.add(new memberPlayer( "John","Dillermand",34,1));
         allPlayerList.add(new memberPlayer("Thor","Andersen",22,1));
         allPlayerList.add(new memberPlayer("Hans", "Clausen", 34, 1));
         allPlayerList.add(new memberPlayer("Henning", "Dillermand", 25, 2));
@@ -141,6 +141,11 @@ public class Main {
 
         return new memberPlayer(firstName, lastName, age, team);
 
+    }
+
+    private static int nextPlayerId() {
+
+        return 0;
     }
 }
 
