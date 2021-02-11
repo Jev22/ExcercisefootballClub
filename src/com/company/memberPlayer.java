@@ -27,7 +27,6 @@ public class memberPlayer implements Comparable<memberPlayer>{
     public int compareTo(memberPlayer otherPlayer) {
 
         switch(sortBy){
-
             case 1:
                 return firstName.compareTo(otherPlayer.firstName);
             case 2:
@@ -36,7 +35,6 @@ public class memberPlayer implements Comparable<memberPlayer>{
                 return age - otherPlayer.age;
             case 4:
                 return team - otherPlayer.team;
-
             default:
                 return 0;
         }
