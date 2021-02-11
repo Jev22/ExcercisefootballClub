@@ -20,7 +20,7 @@ public class memberPlayer implements Comparable<memberPlayer>{
     }
 
     public String toString(){
-        return "Name: "+ firstName +" "+ lastName +", age: "+ age +", plays on team " + team + ".";
+        return playerID+ ". " +firstName +" "+ lastName +", age: "+ age +", plays on team " + team + ".";
     }
 
     @Override

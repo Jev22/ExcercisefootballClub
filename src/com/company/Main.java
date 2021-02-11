@@ -1,13 +1,10 @@
 package com.company;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
 
-    static List<memberPlayer> allPlayerList = new ArrayList<>();
+    static List<memberPlayer> allPlayerList = new LinkedList<>();
 
     public static void main(String[] args) {
         tempPlayerList();
@@ -40,11 +37,10 @@ public class Main {
                     break;
                 case 2:
                     runPrintPlayerMenu();
-                    System.out.println("All Players: ");
-                    for(memberPlayer player:allPlayerList){
-                        System.out.println(player);
-                    }
-                    System.out.println();
+                    break;
+
+                case 3:
+                    deletePlayer();
                     break;
                 case 0:
                     runMainMenu = false;
@@ -88,7 +84,6 @@ public class Main {
 
         }
 
-
     }
 
     private static void sortByFirstNamePrint() {
@@ -100,6 +95,35 @@ public class Main {
         }
         Collections.sort(byFirstNameList);
         printList(byFirstNameList);
+    }
+
+// Sorter efter fornavn i omvendt rækkefølge (test)
+//    private static void sortByFirstNamePrint() {
+//        List<memberPlayer> byFirstNameList = new ArrayList<>();
+//
+//        for(memberPlayer fnPlayer: allPlayerList){
+//            fnPlayer.sortBy = 1;
+//            byFirstNameList.add(fnPlayer);
+//        }
+//        Collections.sort(byFirstNameList, Collections.reverseOrder());
+//        printList(byFirstNameList);
+//    }
+//
+
+    private static void deletePlayer() {
+        printList(allPlayerList);
+        System.out.println("Write the first name of the player you want to delete");
+        Scanner input = new Scanner(System.in);
+        String chosenPlayer = input.next();
+        for(memberPlayer player:allPlayerList){
+           if (player.firstName.equalsIgnoreCase(chosenPlayer)) {
+               allPlayerList.remove(player);
+               break;
+            }
+
+        }
+        printList(allPlayerList);
+
     }
 
     private static void printList(List<memberPlayer> listInput) {
@@ -123,6 +147,7 @@ public class Main {
         System.out.println("Main Menu - pick option:");
         System.out.println("1. Create new player");
         System.out.println("2. Print players");
+        System.out.println("3. Delete player");
         System.out.println("0. Exit Menu");
     }
 
