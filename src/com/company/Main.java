@@ -4,27 +4,42 @@ import java.util.*;
 
 public class Main {
 
-    static List<memberPlayer> allPlayerList = new LinkedList<>();
-
+    static List<MemberPlayer> allPlayerList = new LinkedList<>();
+    static CustomLinkedList testList = new CustomLinkedList();
     public static void main(String[] args) {
-        tempPlayerList();
+        //generatePlayerList();
+        generateCustomPlayerList();
         runMainSwitchMenu();
     }
 
-    private static void tempPlayerList() {
-        allPlayerList.add(new memberPlayer( "Jesper", "Nielsen", 32, 1));
-        allPlayerList.add(new memberPlayer( "Biggus","Dickus",34,1));
-        allPlayerList.add(new memberPlayer( "John","Dillermand",34,1));
-        allPlayerList.add(new memberPlayer("Thor","Andersen",22,1));
-        allPlayerList.add(new memberPlayer("Hans", "Clausen", 34, 1));
-        allPlayerList.add(new memberPlayer("Henning", "Dillermand", 25, 2));
-        allPlayerList.add(new memberPlayer("Jens", "Mogensen", 22, 2));
-        allPlayerList.add(new memberPlayer("Ice", "Wallowcome", 17, 2));
-        allPlayerList.add(new memberPlayer("Roberto", "Carlos", 34, 1));
+    private static void generatePlayerList() {
+        allPlayerList.add(new MemberPlayer( "Jesper", "Nielsen", 32, 1));
+        allPlayerList.add(new MemberPlayer( "Biggus","Dickus",34,1));
+        allPlayerList.add(new MemberPlayer( "John","John",34,1));
+        allPlayerList.add(new MemberPlayer("Thor","Andersen",22,1));
+        allPlayerList.add(new MemberPlayer("Hans", "Clausen", 34, 1));
+        allPlayerList.add(new MemberPlayer("Henning", "John", 25, 2));
+        allPlayerList.add(new MemberPlayer("Jens", "Mogensen", 22, 2));
+        allPlayerList.add(new MemberPlayer("Vanilla", "Ice", 17, 2));
+        allPlayerList.add(new MemberPlayer("Roberto", "Carlos", 34, 1));
 
         //team.add(new memberPlayer();
     }
+    private static void generateCustomPlayerList() {
+        testList.add(new MemberPlayer( "Jesper", "Nielsen", 32, 1));
+        testList.add(new MemberPlayer( "Biggus","Dickus",34,1));
+        testList.add(new MemberPlayer( "John","John",34,1));
+        testList.add(new MemberPlayer("Thor","Andersen",22,1));
+        testList.add(new MemberPlayer("Hans", "Clausen", 34, 1));
+        testList.add(new MemberPlayer("Henning", "John", 25, 2));
+        testList.add(new MemberPlayer("Jens", "Mogensen", 22, 2));
+        testList.add(new MemberPlayer("Vanilla", "Ice", 17, 2));
+        testList.add(new MemberPlayer("Roberto", "Carlos", 34, 1));
 
+        //testList.add(new memberPlayer();
+        System.out.print(testList);
+        System.out.println("Player count: "+testList.size()+"\n");
+    }
     private static void runMainSwitchMenu() {
         Scanner input = new Scanner(System.in);
         boolean runMainMenu=true;
@@ -33,12 +48,11 @@ public class Main {
             int myChoice = input.nextInt();
             switch (myChoice){
                 case 1:
-                    allPlayerList.add(createNewPlayer());
+                    testList.add(createNewPlayer());
                     break;
                 case 2:
-                    runPrintPlayerMenu();
+                    printTeamListMenu();
                     break;
-
                 case 3:
                     deletePlayer();
                     break;
@@ -50,7 +64,7 @@ public class Main {
 
     }
 
-    private static void runPrintPlayerMenu() {
+    private static void printTeamListMenu() {
 
         Scanner input = new Scanner(System.in);
         boolean runSortMenu = true;
@@ -61,40 +75,42 @@ public class Main {
             switch (menuChoice){
                 case 1:
                     System.out.println("Sorted by first name");
-                    sortByFirstNamePrint();
-                    System.out.println();
+                    printSortedList(1);
                     break;
                 case 2:
                     System.out.println("Sorted by last name");
-                    System.out.println();
+                    printSortedList(2);
                     break;
                 case 3:
                     System.out.println("Sorted by age");
-                    System.out.println();
+                    printSortedList(3);
                     break;
                 case 4:
                     System.out.println("Sorted by team");
-                    System.out.println();
+                    printSortedList(4);
                     break;
                 case 0:
                     runSortMenu = false;
-
-                default:
             }
 
         }
 
     }
 
-    private static void sortByFirstNamePrint() {
-        List<memberPlayer> byFirstNameList = new ArrayList<>();
+    private static void printSortedList(int sortByChoice) {
+        //det her er nyt
+        CustomLinkedList sortedTestList = new CustomLinkedList();
+        sortedTestList.addAll(testList);
+        MemberPlayer.sortBy = sortByChoice;
 
-        for(memberPlayer fnPlayer: allPlayerList){
-            fnPlayer.sortBy = 1;
-            byFirstNameList.add(fnPlayer);
-        }
-        Collections.sort(byFirstNameList);
-        printList(byFirstNameList);
+        //det her er det gamle
+        List<MemberPlayer> sortedList = new ArrayList<>();
+        sortedList.addAll(allPlayerList);//den er ny
+        MemberPlayer.sortBy = sortByChoice;
+        Collections.sort(sortedList);
+
+        printList(sortedList);
+        System.out.println();
     }
 
 // Sorter efter fornavn i omvendt rækkefølge (test)
@@ -115,7 +131,7 @@ public class Main {
         System.out.println("Write the first name of the player you want to delete");
         Scanner input = new Scanner(System.in);
         String chosenPlayer = input.next();
-        for(memberPlayer player:allPlayerList){
+        for(MemberPlayer player:allPlayerList){
            if (player.firstName.equalsIgnoreCase(chosenPlayer)) {
                allPlayerList.remove(player);
                break;
@@ -126,8 +142,8 @@ public class Main {
 
     }
 
-    private static void printList(List<memberPlayer> listInput) {
-        for(memberPlayer player:listInput){
+    private static void printList(List<MemberPlayer> listInput) {
+        for(MemberPlayer player:listInput){
             System.out.println(player);
         }
         System.out.println();
@@ -151,7 +167,7 @@ public class Main {
         System.out.println("0. Exit Menu");
     }
 
-    public static memberPlayer createNewPlayer(){
+    public static MemberPlayer createNewPlayer(){
 
         Scanner input = new Scanner(System.in);
 
@@ -164,7 +180,7 @@ public class Main {
         System.out.println("Place player on team (1 or 2): ");
         int team = input.nextInt();
 
-        return new memberPlayer(firstName, lastName, age, team);
+        return new MemberPlayer(firstName, lastName, age, team);
 
     }
 

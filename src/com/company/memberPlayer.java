@@ -1,15 +1,15 @@
 package com.company;
 
-public class memberPlayer implements Comparable<memberPlayer>{
+public class MemberPlayer implements Comparable<MemberPlayer>{
     int playerID;
     String firstName;
     String lastName;
     int age;
     int team;
-    int sortBy = 1;
+    static int sortBy;
     static int nextID = 1;
 
-    public memberPlayer(String firstName, String lastName, int age, int team) {
+    public MemberPlayer(String firstName, String lastName, int age, int team) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
@@ -24,7 +24,7 @@ public class memberPlayer implements Comparable<memberPlayer>{
     }
 
     @Override
-    public int compareTo(memberPlayer otherPlayer) {
+    public int compareTo(MemberPlayer otherPlayer) {
 
         switch(sortBy){
             case 1:
